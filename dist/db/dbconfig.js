@@ -1,12 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.client = void 0;
+exports.pool = exports.client = void 0;
 const pg_1 = require("pg");
-exports.client = new pg_1.Client({
+const credentials = {
     user: 'tomaslachmanngmailcom_2093',
-    host: 'store5.rosti.cz',
+    host: 'localhost',
     database: 'tomaslachmanngmailcom_2093',
     password: 'Lachty25051995',
-    port: 5432,
-});
+    port: 4000,
+};
+exports.client = new pg_1.Client(credentials);
+exports.pool = new pg_1.Pool(credentials);
 //# sourceMappingURL=dbconfig.js.map

@@ -1,1 +1,3 @@
 # tripper
+
+applikace na spolucestování

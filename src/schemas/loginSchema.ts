@@ -1,14 +1,13 @@
 import { buildSchema } from "graphql";
 
-export const schema = buildSchema(`
-    
+export const loginSchema = buildSchema(`
     type Query {
-        user(id: Int!): User
+        login(username: String!, password: String!): User
     }
 
     type User {
-        id: Int
         username: String!
         password: String!
+        id: Int!
     }
 `);

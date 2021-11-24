@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.schema = void 0;
+exports.loginSchema = void 0;
 const graphql_1 = require("graphql");
-exports.schema = (0, graphql_1.buildSchema)(`
-    
+exports.loginSchema = (0, graphql_1.buildSchema)(`
     type Query {
-        user(id: Int!): User
+        login(username: String!, password: String!): User
     }
 
     type User {
-        id: Int
         username: String!
         password: String!
+        id: Int!
     }
 `);
-//# sourceMappingURL=schema.js.map
+//# sourceMappingURL=loginSchema.js.map

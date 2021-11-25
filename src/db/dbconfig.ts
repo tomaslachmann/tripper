@@ -2,10 +2,10 @@
 import { Client, Pool } from 'pg';
 
 const credentials = {
-    user: 'tomaslachmanngmailcom_2093',
+    user: 'test',
     host: 'localhost',
-    database: 'tomaslachmanngmailcom_2093',
-    password: 'Lachty25051995',
+    database: 'test',
+    password: 'test',
     port: 4000,
 }
 

@@ -3,10 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.pool = exports.client = void 0;
 const pg_1 = require("pg");
 const credentials = {
-    user: 'tomaslachmanngmailcom_2093',
+    user: 'test',
     host: 'localhost',
-    database: 'tomaslachmanngmailcom_2093',
-    password: 'Lachty25051995',
+    database: 'test',
+    password: 'test',
     port: 4000,
 };
 exports.client = new pg_1.Client(credentials);

@@ -18,26 +18,22 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cors = require("cors");
-const helmet = require("helmet");
-const bodyParser = require("body-parser");
-const routes_1 = __importDefault(require("./routes"));
-const app = (0, express_1.default)();
-app.use(cors());
-app.use(helmet());
-app.use(bodyParser.json());
-app.use("/", routes_1.default);
-const PORT = 4001;
-app.use("/", routes_1.default);
-app.get('/', function (Request, Response) {
-    Response.send("Hola Tripper!");
-});
-app.listen(PORT, () => {
-    console.log("server běží");
-});
-//# sourceMappingURL=server.js.map
+exports.User = void 0;
+const bcrypt = __importStar(require("bcryptjs"));
+class User {
+    hashPassword() {
+        this.password = bcrypt.hashSync(this.password, 8);
+    }
+    checkIfUnencryptedPasswordIsValid(unencryptedPassword) {
+        return bcrypt.compareSync(unencryptedPassword, this.password);
+    }
+    init(user) {
+        this.id = user.id;
+        this.username = user.username;
+        this.password = user.password;
+        this.email = user.email;
+    }
+}
+exports.User = User;
+//# sourceMappingURL=User.js.map

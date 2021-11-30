@@ -22,22 +22,26 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const cors = require("cors");
-const helmet = require("helmet");
-const bodyParser = require("body-parser");
-const routes_1 = __importDefault(require("./routes"));
-const app = (0, express_1.default)();
-app.use(cors());
-app.use(helmet());
-app.use(bodyParser.json());
-app.use("/", routes_1.default);
-const PORT = 4001;
-app.use("/", routes_1.default);
-app.get('/', function (Request, Response) {
-    Response.send("Hola Tripper!");
-});
-app.listen(PORT, () => {
-    console.log("server běží");
-});
-//# sourceMappingURL=server.js.map
+exports.checkJwt = void 0;
+const jwt = __importStar(require("jsonwebtoken"));
+const config_1 = __importDefault(require("../config/config"));
+const checkJwt = (req, res, next) => {
+    const token = req.headers["token"];
+    let jwtPayload;
+    try {
+        jwtPayload = jwt.verify(token, config_1.default.jwtSecret);
+        res.locals.jwtPayload = jwtPayload;
+    }
+    catch (error) {
+        res.status(401).send();
+        return;
+    }
+    const { userId, username } = jwtPayload;
+    const newToken = jwt.sign({ userId, username }, config_1.default.jwtSecret, {
+        expiresIn: "1h"
+    });
+    res.setHeader("token", newToken);
+    next();
+};
+exports.checkJwt = checkJwt;
+//# sourceMappingURL=checkJwt.js.map

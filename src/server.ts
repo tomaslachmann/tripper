@@ -1,40 +1,23 @@
 import express, { Request, Response } from "express";
-import { graphqlHTTP } from "express-graphql";
-import { registerSchema } from "./schemas/registerSchema";
-import { loginUser } from "./queries/login";
-import { registerUser } from "./queries/register";
-import { loginSchema } from "./schemas/loginSchema";
+
+import * as cors from "cors";
+import * as helmet from "helmet";
+import * as bodyParser from "body-parser";
+import routes from "./routes";
 
 //express initialization
 const app = express();
 
+app.use(cors());
+app.use(helmet());
+app.use(bodyParser.json());
+
+app.use("/", routes);
+
 //PORT
 const PORT:number = 4001;
 
-// The root provides a resolver function for each API endpoint
-var root = {
-  register: registerUser,
-  login: loginUser
-};
-
-//graphql playground setup code
-app.use(
-  "/register",
-  graphqlHTTP({
-    schema: registerSchema,
-    rootValue: root,
-    graphiql: true
-  })
-);
-
-app.use(
-  "/login",
-  graphqlHTTP({
-    schema: loginSchema,
-    rootValue: root,
-    graphiql: true
-  })
-);
+app.use("/", routes);
 
 app.get('/', function(Request, Response){
   Response.send("Hola Tripper!")

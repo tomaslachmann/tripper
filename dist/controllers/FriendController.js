@@ -21,11 +21,15 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkJwt = void 0;
+const friend_1 = __importDefault(require("../queries/friend"));
 const jwt = __importStar(require("jsonwebtoken"));
 const config_1 = __importDefault(require("../config/config"));
-const checkJwt = (req, res, next) => {
+class FriendController {
+}
+_a = FriendController;
+FriendController.getAllFriends = async (req, res) => {
     const token = req.headers["x-access-token"];
     let jwtPayload;
     try {
@@ -36,12 +40,49 @@ const checkJwt = (req, res, next) => {
         res.status(401).send();
         return;
     }
-    const { userId, username } = jwtPayload;
-    const newToken = jwt.sign({ userId, username }, config_1.default.jwtSecret, {
-        expiresIn: "1h"
+    const { userId } = jwtPayload;
+    const requestRepository = friend_1.default;
+    let friends;
+    try {
+        const response = await requestRepository.getAllFriends(userId);
+        friends = response;
+    }
+    catch (error) {
+        res.status(401).send(error);
+        return;
+    }
+    res.send({
+        friends: friends
     });
-    res.setHeader("token", newToken);
-    next();
 };
-exports.checkJwt = checkJwt;
-//# sourceMappingURL=checkJwt.js.map
+FriendController.deleteFriend = async (req, res) => {
+    const token = req.headers["x-access-token"];
+    let jwtPayload;
+    try {
+        jwtPayload = jwt.verify(token, config_1.default.jwtSecret);
+        res.locals.jwtPayload = jwtPayload;
+    }
+    catch (error) {
+        res.status(401).send();
+        return;
+    }
+    const { userId } = jwtPayload;
+    const { id } = req.body;
+    const FriendRepository = friend_1.default;
+    let friends;
+    try {
+        const response = await FriendRepository.getRelation(id);
+        const resId = await FriendRepository.removeFriend(userId, response);
+        const resFinal = await FriendRepository.getAllFriends(resId);
+        friends = resFinal;
+    }
+    catch (error) {
+        res.status(401).send(error);
+        return;
+    }
+    res.send({
+        friends: friends
+    });
+};
+exports.default = FriendController;
+//# sourceMappingURL=FriendController.js.map

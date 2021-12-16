@@ -4,7 +4,15 @@ import { Client, Pool } from 'pg';
 
 dotenv.config({ path: __dirname+'/.env' });
 
-const credentials = {
+interface Credentials {
+    user:any,
+    host:any,
+    database:any,
+    password:any,
+    port:any
+}
+
+const credentials:Credentials = {
     user: process.env.DB_USER,
     host: process.env.DB_HOST_DEV,
     database: process.env.DB_DB,

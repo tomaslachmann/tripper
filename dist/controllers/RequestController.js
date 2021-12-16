@@ -21,11 +21,16 @@ var __importStar = (this && this.__importStar) || function (mod) {
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
+var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkJwt = void 0;
+const request_1 = __importDefault(require("../queries/request"));
 const jwt = __importStar(require("jsonwebtoken"));
 const config_1 = __importDefault(require("../config/config"));
-const checkJwt = (req, res, next) => {
+const Request_1 = require("../entity/Request");
+class RequestController {
+}
+_a = RequestController;
+RequestController.get = async (req, res) => {
     const token = req.headers["x-access-token"];
     let jwtPayload;
     try {
@@ -36,12 +41,37 @@ const checkJwt = (req, res, next) => {
         res.status(401).send();
         return;
     }
-    const { userId, username } = jwtPayload;
-    const newToken = jwt.sign({ userId, username }, config_1.default.jwtSecret, {
-        expiresIn: "1h"
+    const { userId } = jwtPayload;
+    const requestRepository = request_1.default;
+    let request = new Request_1.RequestEntity;
+    try {
+        const response = await requestRepository.getRequests(userId);
+        request = response;
+    }
+    catch (error) {
+        res.status(401).send(error);
+        return;
+    }
+    res.send({
+        request: request
     });
-    res.setHeader("token", newToken);
-    next();
 };
-exports.checkJwt = checkJwt;
-//# sourceMappingURL=checkJwt.js.map
+RequestController.handle = async (req, res) => {
+    const { id, type } = req.body;
+    const requestRepository = request_1.default;
+    let request = new Request_1.RequestEntity;
+    try {
+        const userId = await requestRepository.handleRequest(id, type);
+        const response = await requestRepository.getRequests(userId);
+        request = response;
+    }
+    catch (error) {
+        res.status(401).send(error);
+        return;
+    }
+    res.send({
+        request: request
+    });
+};
+exports.default = RequestController;
+//# sourceMappingURL=RequestController.js.map

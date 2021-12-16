@@ -32,14 +32,14 @@ class AuthController {
 }
 _a = AuthController;
 AuthController.login = async (req, res) => {
-    let { username, password } = req.body;
-    if (!(username && password)) {
+    let { email, password } = req.body;
+    if (!(email && password)) {
         res.status(400).send();
     }
     const userRepository = User_1.default;
     let user = new User_2.User;
     try {
-        const response = await userRepository.getByUsername(req.body);
+        const response = await userRepository.getByEmail(req.body);
         user.init(response);
     }
     catch (error) {
@@ -50,7 +50,10 @@ AuthController.login = async (req, res) => {
         return;
     }
     const token = jwt.sign({ userId: user.id, username: user.username }, config_1.default.jwtSecret, { expiresIn: "1h" });
-    res.send(token);
+    res.send({
+        token: token,
+        user: user
+    });
 };
 AuthController.changePassword = async (req, res) => {
     const id = res.locals.jwtPayload.userId;

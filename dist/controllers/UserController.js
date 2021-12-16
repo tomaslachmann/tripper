@@ -85,4 +85,4 @@ UserController.deleteUser = async (req, res) => {
 };
 ;
 exports.default = UserController;
-//# sourceMappingURL=UserController.js.map
+//# sourceMappingURL=userController.js.map

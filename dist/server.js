@@ -26,12 +26,12 @@ const express_1 = __importDefault(require("express"));
 const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
-const routes_1 = __importDefault(require("./routes"));
+const routes_1 = require("./routes");
 const app = (0, express_1.default)();
 app.use(cors());
 app.use(helmet());
 app.use(bodyParser.json());
-app.use("/", routes_1.default);
+
 const PORT = 4001;
 app.use("/", routes_1.default);
 app.get('/', function (Request, Response) {

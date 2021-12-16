@@ -9,22 +9,26 @@ import config from "../config/config";
 class AuthController {
   static login = async (req: Request, res: Response) => {
     //Check if username and password are set
-    let { username, password } = req.body;
-
-    if (!(username && password)) {
+    let { email, password } = req.body;
+  
+    if (!(email && password)) {
       res.status(400).send();
     }
+
 
     //Get user from database
     const userRepository = userQueries;
     let user = new User;
+     
     try {
-      const response = await userRepository.getByUsername(req.body);
-      user.init(response)     
+      const response = await userRepository.getByEmail(req.body);
+      user.init(response)
+   
     } catch (error) {
       res.status(401).send();
     }
-
+  
+   
     //Check if encrypted password match
     if (!user.checkIfUnencryptedPasswordIsValid(password)) {
       res.status(401).send("špatně zadané heslo");
@@ -39,7 +43,10 @@ class AuthController {
     );
 
     //Send the jwt in the response
-    res.send(token);
+    res.send({
+      token:token,
+      user:user
+    });
   };
 
   static changePassword = async (req: Request, res: Response) => {

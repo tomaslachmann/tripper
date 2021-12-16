@@ -1,0 +1,79 @@
+.modal{
+    position:fixed;
+    top: 0;
+    left:0;
+    right:0;
+    bottom:0;
+    margin:auto;
+    background:white;
+    width:30rem;
+    max-height:22rem;
+    box-sizing: border-box;
+    padding:1rem;
+    -webkit-box-shadow: 0px 9px 29px 11px #0200001e; 
+    box-shadow: 0px 9px 29px 11px #0200001e;
+    border-radius:20px;
+}
+
+.modal .modal-header{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    border-bottom: solid 1px rgb(239, 239, 239);
+    padding-bottom:1em;
+}
+
+.modal .modal-header h3{
+    font-weight:600;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 1.5em;
+    margin:0;
+    
+}
+
+.modal .modal-header button{
+    padding: 0.3em 0.5em;
+    border-radius: 15px;
+    font-size: 1.5em;
+    position: absolute;
+    right: 0.5em;
+    top:.4em;
+    background:white;
+}
+
+.modal .modal-header button:hover{
+    background:rgb(239, 239, 239);
+}
+
+.modal .modal-body{
+    box-sizing: border-box;
+    padding:0 1.5rem;
+}
+
+.modal .modal-body h2{
+    font-size:1.9em;
+    text-align: left;
+    font-weight:600;
+}
+
+.modal .modal-body input{
+    width:94%;
+    padding:1em .5em;
+    font-size:1.2em;
+    border-radius:15px;
+    border:1px solid rgb(184, 184, 184);
+}
+
+.modal .modal-body button{
+    width:100%;
+    border-radius:15px;
+    font-size:1.2em;
+    padding: .7em 0;
+    margin-top:1.5rem;
+    color:white;
+    background:#FF3557;
+}
+
+.modal .modal-body input.wrong{
+    border:solid 2px #FF3557;
+}

@@ -1,0 +1,40 @@
+
+.request .profile-pic{
+    background:red;
+    width:3rem;
+    height:3rem;
+    border-radius:15px;
+}
+
+.request{
+    display:flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    justify-content: center;
+    padding:1.5rem;
+}
+
+.request p{
+    width:calc(100% - 4rem);
+    text-align: left;
+    margin:0;
+    margin-left:1rem;
+}
+
+.request button:first-of-type{
+    margin-right:.5rem;
+}
+
+.request button{
+    width:calc(50% - .5rem);
+    font-size:1em;
+    padding:.8em 0;
+    margin-top:1rem;
+    font-weight:600;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.request{
+    margin-top:1rem;
+}

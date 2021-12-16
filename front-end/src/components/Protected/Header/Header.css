@@ -1,0 +1,68 @@
+header {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    width:100%;
+    font-size:1.2em;
+    font-weight:400;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-bottom:1rem;
+}
+
+header > div {
+    width:100%;
+}
+
+header > div > h3{
+    font-size:1.7em;
+    margin:0;
+    padding:0;
+    padding-top: .2em;
+    text-align: left;
+}
+
+header div ul {
+    display:flex;
+    flex-wrap:Wrap;
+    justify-content: space-between;
+}
+
+header div ul li {
+    list-style: none;
+}
+
+header div button{
+    font-size:1em;
+    font-weight:400;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding:.5em 1em;
+    background:#FC8E21;
+    border-radius:15px;
+    color:white;
+}
+
+header .header-wrap{
+    display:flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+header .header-wrap input {
+    padding: .5em 1em;
+    font-size: 1em;
+    border-radius:15px;
+    background:#E4F3FA;
+    color:#B6B6B6;
+    border:none;
+    outline:none;
+}
+
+header .header-wrap > * {
+    margin-left:1rem;
+}
+
+header .header-wrap .header-options{
+    height:90%;
+    border-radius:15px;
+    background:red;
+    width:3rem;
+}

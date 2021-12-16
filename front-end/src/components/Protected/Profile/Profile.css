@@ -1,0 +1,29 @@
+.profile-card{
+    box-sizing: border-box;
+    padding:2rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.profile-card .profile-pic{
+    background:red;
+    border-radius:15px;
+    width:3rem;
+    height:3rem;
+    margin-left:0rem;
+    margin-right:1rem;
+}
+
+.profile-card h4{
+    font-size:1.5em;
+    margin:0;
+    padding:0;
+}
+
+.profile-card p{
+    padding:0;
+    margin:0;
+    text-align: left;
+}

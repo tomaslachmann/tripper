@@ -1,0 +1,72 @@
+.friend-wrap{
+    display:flex;
+    box-sizing: border-box;
+    padding:1em;
+    flex-wrap:wrap;
+    justify-content: space-between;
+    align-items: center;
+    border: solid 1px black;
+    overflow: visible;
+}
+
+.friend-wrap .friend-image{
+    width:5rem;
+    height:5rem;
+    border-radius:15px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.friend-wrap .friend-image img{
+    width:100%;
+    left:0;
+    margin: 0 !important;
+}
+
+.friend-wrap .friend-info{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+.friend-wrap .friend-info h5, .friend-wrap .friend-info p {
+    margin:0;
+}
+.friend-wrap .friend-control{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:2rem;
+    width:2rem;
+}
+
+.friend-wrap .friend-control:hover{
+    background:grey;
+    cursor: pointer;
+}
+
+.friend-wrap .friend-controller{
+    position:absolute;
+    z-index:10;
+    right:1.5rem;
+    border-top-right-radius: 0px;
+    top:50%;
+}
+
+.friend-wrap .friend-controller ul{
+    margin:0;
+    padding:0;
+}
+
+.friend-wrap .friend-controller ul li {
+    list-style: none;
+    text-align: left;
+    padding:0.5em 1em;
+    cursor: pointer;
+}
+
+.friend-wrap .friend-controller ul li:hover{
+    background:grey;
+}

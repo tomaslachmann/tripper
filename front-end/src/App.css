@@ -1,0 +1,144 @@
+:root{
+  --dark-blue:#1C3760;
+  --grey:rgba(248,248,248,.8);
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+#root .App .App{
+  box-sizing: border-box;
+  padding:2rem 10rem;
+}
+
+#root .LoggedIn div.App {
+  box-sizing: border-box;
+  padding:2rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+a{
+  color:inherit;
+  text-decoration: none;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+}
+
+.rounded-25{
+  border-radius: 25px;
+}
+
+.bg-dark-blue{
+  background:var(--dark-blue);
+}
+
+.bg-grey{
+  background:var(--grey);
+}
+
+.color-white{
+  color:white;
+}
+
+.position-relative{
+  position:relative;
+}
+
+.position-absolute{
+  position: absolute;
+}
+
+.width-100{
+  width:100%;
+}
+
+.flex-vertical{
+  display:flex;
+  flex-direction: column;
+}
+
+.rounded-15{
+  border-radius:15px;
+}
+
+.bg-white{
+  background:white;
+}
+
+.shadow{
+  -webkit-box-shadow: 0px 6px 11px 5px rgba(0, 0, 0, 0.116); 
+  box-shadow: 5px 5px 3px 1px rgba(0,0,0,0.08);
+}
+
+.bold{
+  font-weight: 700;
+}
+
+.bg-blue{
+  background:#2A55C2;
+}
+
+.color-blue{
+  color:#2A55C2;
+}
+
+.border-blue{
+  border: solid 1px #2A55C2;
+}
+
+.profile-pic{
+  width:3rem;
+  height:3rem;
+  background:red;
+  border-radius:15px;
+}
+
+.bg-green{
+  background:green;
+}
+
+.bg-red{
+  background:red;
+}
+
+.rounded-50{
+  border-radius:50px;
+}

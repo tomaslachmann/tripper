@@ -1,0 +1,54 @@
+.menu-wrap{
+    overflow: visible;
+    margin-top:3rem;
+}
+
+.menu-wrap ul li{
+    list-style: none;
+    margin:0;
+    padding:1em 0;
+    font-size:1.3em;
+    position: relative;
+}
+
+.menu-wrap ul li:first-of-type{
+    border-radius:15px 15px 0 0;
+}
+
+.menu-wrap ul li:last-of-type{
+    border-radius:0 0 15px 15px;
+}
+
+.menu-wrap ul{
+    margin:0;
+    padding:0;
+    text-align: left;
+}
+
+.menu-wrap ul li a {
+    padding-left:2rem;
+}
+
+.menu-wrap ul li:hover{
+    color:blue;
+    cursor:pointer;
+    background:grey;
+}
+
+.menu-wrap ul li:hover::before{
+    content:"";
+    position: absolute;
+    width:10px;
+    background:blue;
+    height:100%;
+    left:0;
+    top:0;
+}
+
+.menu-wrap ul li:first-of-type:hover::before{
+    border-top-left-radius: 25px;
+}
+
+.menu-wrap ul li:last-of-type:hover::before{
+    border-bottom-left-radius: 25px;
+}

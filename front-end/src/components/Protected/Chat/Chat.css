@@ -1,0 +1,40 @@
+.chat-wrap ul{
+    margin:0;
+    padding:0;
+}
+
+.chat-wrap{
+    max-height:30rem;
+    overflow-y: scroll;
+}
+
+.chat-wrap ul li{
+    list-style: none;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size:1.05em;
+    padding:.5rem;
+    padding-left:1.5rem;
+    cursor:pointer;
+}
+
+.chat-wrap ul li:first-of-type{
+    padding-top:1.5rem;
+}
+
+.chat-wrap ul li:last-of-type{
+    padding-bottom:1.5rem;
+}
+
+.chat-wrap ul li:hover{
+    background:grey;
+}
+
+.chat-wrap ul li .profile-pic{
+    width:3rem;
+    height:3rem;
+    background:red;
+    border-radius:15px;
+    margin-right:1rem;
+}

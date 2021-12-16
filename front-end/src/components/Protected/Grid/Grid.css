@@ -1,0 +1,31 @@
+.page-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns: 22% 1fr 22%;
+    background:#F2F6F8;
+    box-sizing: border-box;
+    padding:2rem;
+}
+
+.page-grid .page-grid-left{
+    overflow:visible;
+}
+
+.page-grid .page-grid-center{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.page-grid .page-grid-right{
+    overflow:visible;
+}
+
+.page-grid .page-grid-center-right{
+    grid-column: span 2;
+    overflow:visible;
+}
+
+.chat h5{
+    margin-left:2rem;
+    text-align: left;
+}

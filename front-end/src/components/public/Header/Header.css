@@ -1,0 +1,38 @@
+nav {
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    width:100%;
+    font-size:1.2em;
+    font-weight:400;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+nav > div {
+    width:100%;
+}
+
+nav > div > h3{
+    font-size:1.7em;
+    margin:0;
+    padding:0;
+    padding-top: .2em;
+    text-align: left;
+}
+
+nav div ul {
+    display:flex;
+    flex-wrap:Wrap;
+    justify-content: space-between;
+}
+
+nav div ul li {
+    list-style: none;
+}
+
+nav div button{
+    font-size:1em;
+    font-weight:400;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding:1em 2em;
+    margin-top:-2em;
+}

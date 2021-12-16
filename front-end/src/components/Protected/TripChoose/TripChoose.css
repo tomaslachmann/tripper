@@ -1,0 +1,38 @@
+.trip-choose-wrap{
+    background:white;
+    display:grid;
+    grid-template-columns: 30% 1fr;
+}
+
+.trip-choose-wrap .user-wrap{
+    width: 100%;
+}
+
+.trip-choose-wrap .user-wrap .user-image{
+    height:25rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.trip-choose-wrap .user-wrap .user-image img{
+    min-height:100%;
+    width:auto;
+    min-width:100%;
+}
+
+.trip-choose-wrap .user-wrap .trip-controls{
+    display:flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.trip-choose-wrap .user-wrap .trip-controls div{
+    width:3rem;
+    height:3rem;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}

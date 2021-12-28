@@ -23,7 +23,6 @@ class AuthController {
     try {
       const response = await userRepository.getByEmail(req.body);
       user.init(response)
-   
     } catch (error) {
       res.status(401).send();
     }
@@ -41,7 +40,7 @@ class AuthController {
       config.jwtSecret,
       { expiresIn: "1h" }
     );
-
+      
     //Send the jwt in the response
     res.send({
       token:token,

@@ -24,11 +24,13 @@ UserController.getOneById = async (req, res) => {
     }
 };
 UserController.newUser = async (req, res) => {
-    let { username, password, email } = req.body;
+    let { username, password, email, firstName, lastName } = req.body;
     let user = new User_2.User();
     user.username = username;
     user.password = password;
     user.email = email;
+    user.firstName = firstName;
+    user.lastName = lastName;
     const errors = await (0, class_validator_1.validate)(user);
     if (errors.length > 0) {
         res.status(400).send(errors);
@@ -85,4 +87,4 @@ UserController.deleteUser = async (req, res) => {
 };
 ;
 exports.default = UserController;
-//# sourceMappingURL=userController.js.map
+//# sourceMappingURL=UserController.js.map

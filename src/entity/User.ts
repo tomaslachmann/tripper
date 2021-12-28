@@ -7,6 +7,8 @@
     username: string;
     password: string;
     email: String;
+    firstName: string;
+    lastName: string;
   
     hashPassword() {
       this.password = bcrypt.hashSync(this.password, 8);
@@ -21,5 +23,7 @@
       this.username = user.username;
       this.password = user.password;
       this.email = user.email;
+      this.firstName = user.firstName;
+      this.lastName = user.lastName;
     }
   }

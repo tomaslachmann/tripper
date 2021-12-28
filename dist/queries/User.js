@@ -20,7 +20,7 @@ userQueries.SQLCommands = {
     },
     post: {
         singleUser: {
-            register: 'SELECT uspIUUser(0,$1,$2,$3) as id',
+            register: 'SELECT uspIUUser(0,$1,$2,$3,$4,$5) as id',
             changePassword: 'UPDATE "users" SET "password" = $1, "modifiedAt" = NOW() WHERE "id" = $2 RETURNING *',
             changeEmail: 'UPDATE Users SET Email = $1, modifiedAt = NOW() WHERE ID = $2',
             delete: 'SELECT "deleteUser"($1) as id'
@@ -76,9 +76,9 @@ userQueries.getById = async (user) => {
     }
 };
 userQueries.register = async (user) => {
-    const { username, password, email } = user;
+    const { username, password, email, firstName, lastName } = user;
     const queryText = _a.SQLCommands.post.singleUser.register;
-    const values = [username, password, email];
+    const values = [username, password, email, firstName, lastName];
     try {
         const res = await dbconfig_1.pool.query(queryText, values);
         return res.rows[0];

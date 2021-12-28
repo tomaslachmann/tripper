@@ -34,11 +34,13 @@ static getOneById = async (req: Request, res: Response) => {
 
 static newUser = async (req: Request, res: Response) => {
   //Get parameters from the body
-  let { username, password, email } = req.body;
+  let { username, password, email, firstName, lastName } = req.body;
   let user = new User();
   user.username = username;
   user.password = password;
   user.email = email;
+  user.firstName = firstName;
+  user.lastName = lastName;
 
   //Validade if the parameters are ok
   const errors = await validate(user);

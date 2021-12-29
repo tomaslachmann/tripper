@@ -4,7 +4,7 @@ import * as jwt from "jsonwebtoken";
 import config from "../config/config";
 import { Trip } from "../entity/Trip";
 import { Post } from "../entity/TripPost";
-
+import fs from "fs";
 
 
 
@@ -95,10 +95,11 @@ class TripController {
 
     //Get user from database
     const tripRepository = tripQueries;
-    let trip, participants;
+    let trip, participants, posts;
     try {
       const response = await tripRepository.getById(id);
       participants = await tripRepository.getParticipants(id);
+      posts = await tripRepository.getPosts(id);
       trip = response
     } catch (error) {
       res.status(401).send(error);
@@ -107,7 +108,8 @@ class TripController {
 
     res.send({
       trips:trip,
-      participants:participants
+      participants:participants,
+      posts:posts
     });
   };
 
@@ -203,15 +205,40 @@ class TripController {
     });
   };
 
+  static downloadAttachments = async (req: Request, res: Response) => {
+    const { tripId, name } = req.body;
+    const path= "C:/tripper/tripper/upload/" + tripId + "/" + name;
+    res.download(path)
+  }
+
   static savePost = async (req: Request, res: Response) => {
     
     let post: Post;
     post = req.body
     //Get user from database
     const tripRepository = tripQueries;
-    let posts;
+    
+    let posts:Post;
+    const finalDir = 'C:/tripper/tripper/upload/' + req.body.tripId;
+
+    if (!fs.existsSync(finalDir)){
+      fs.mkdirSync(finalDir);
+    }
+    const fileJson = new Object;
+    req.files?.forEach(file => {
+      const newFilename = finalDir + "/" + file.filename;
+      fileJson[file.filename] = file.path
+      fs.rename(file.path, newFilename, function (err) {
+        if (err) {
+            return console.error(err);
+        }
+
+        //res.json({});
+    });
+    })
+    post.attachments = fileJson;
     try {
-      const response = await tripRepository.getPosts(id);
+      const response = await tripRepository.savePost(post);
       posts = response
     } catch (error) {
       res.status(401).send(error);

@@ -26,6 +26,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Trip_1 = __importDefault(require("../queries/Trip"));
 const jwt = __importStar(require("jsonwebtoken"));
 const config_1 = __importDefault(require("../config/config"));
+const fs_1 = __importDefault(require("fs"));
 class TripController {
 }
 _a = TripController;
@@ -87,10 +88,11 @@ TripController.getAll = async (req, res) => {
 TripController.getById = async (req, res) => {
     const { id } = req.body;
     const tripRepository = Trip_1.default;
-    let trip, participants;
+    let trip, participants, posts;
     try {
         const response = await tripRepository.getById(id);
         participants = await tripRepository.getParticipants(id);
+        posts = await tripRepository.getPosts(id);
         trip = response;
     }
     catch (error) {
@@ -99,7 +101,8 @@ TripController.getById = async (req, res) => {
     }
     res.send({
         trips: trip,
-        participants: participants
+        participants: participants,
+        posts: posts
     });
 };
 TripController.getCreatedTrips = async (req, res) => {
@@ -170,13 +173,34 @@ TripController.getPosts = async (req, res) => {
         posts: posts
     });
 };
+TripController.downloadAttachments = async (req, res) => {
+    const { tripId, name } = req.body;
+    const path = "C:/tripper/tripper/upload/" + tripId + "/" + name;
+    res.download(path);
+};
 TripController.savePost = async (req, res) => {
+    var _b;
     let post;
     post = req.body;
     const tripRepository = Trip_1.default;
     let posts;
+    const finalDir = 'C:/tripper/tripper/upload/' + req.body.tripId;
+    if (!fs_1.default.existsSync(finalDir)) {
+        fs_1.default.mkdirSync(finalDir);
+    }
+    const fileJson = new Object;
+    (_b = req.files) === null || _b === void 0 ? void 0 : _b.forEach(file => {
+        const newFilename = finalDir + "/" + file.filename;
+        fileJson[file.filename] = file.path;
+        fs_1.default.rename(file.path, newFilename, function (err) {
+            if (err) {
+                return console.error(err);
+            }
+        });
+    });
+    post.attachments = fileJson;
     try {
-        const response = await tripRepository.getPosts(id);
+        const response = await tripRepository.savePost(post);
         posts = response;
     }
     catch (error) {

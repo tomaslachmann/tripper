@@ -10,7 +10,7 @@ tripQueries.SQLCommands = {
         singleTrip: {
             byId: 'SELECT * FROM "vTrips" WHERE id = $1 LIMIT 1',
             participants: 'SELECT * FROM "tripsUsers" WHERE "tripId" = $1',
-            posts: 'SELECT * FROM "tripsPosts" WHERE "tripId" = $1'
+            posts: 'SELECT * FROM "tripsPosts" WHERE "TripId" = $1'
         },
         createdTrips: 'SELECT DISTINCT id, name, "startDate", countryname FROM "vTrips" WHERE "ownerId" = $1',
         allTrips: 'SELECT * FROM "vTrips" WHERE id NOT IN (SELECT id FROM "vTrips" WHERE "userId" = $1 OR "ownerId" = $1)',
@@ -22,7 +22,7 @@ tripQueries.SQLCommands = {
         rejectTrip: 'INSERT INTO "tripsUsers" ("userId", "tripId", relation) VALUES ($1, $2, 2) RETURNING "tripId" as id',
         handleRequest: 'UPDATE "tripsUsers" SET relation=$3 WHERE "userId" = $2 AND "tripId"=$1 RETURNING "tripId"',
         searchTrip: `SELECT * FROM "vTrips" WHERE id NOT IN (SELECT id FROM "vTrips" WHERE "userId" = $1 OR "ownerId" = $1)`,
-        post: 'INSERT INTO "tripsPosts" ("TripId", "UserId", "Text", "attachments") VALUES ($1,$2,$3,$4) RETURNING id'
+        post: 'INSERT INTO "tripsPosts" ("TripId", "UserId", "Text", "attachments") VALUES ($1, $2, $3, $4::jsonb) RETURNING *'
     },
     search: {
         startDate: ` AND "startDate" >= `,
@@ -96,7 +96,7 @@ tripQueries.savePost = async (post) => {
     const { tripId, userId, text, attachments } = post;
     const values = [tripId, userId, text, attachments];
     try {
-        const data = await dbconfig_1.pool.query(queryText, [values]);
+        const data = await dbconfig_1.pool.query(queryText, values);
         return data.rows[0];
     }
     catch (err) {

@@ -1,0 +1,21 @@
+AKTIVACE UIVATELSKÉHO ÚÈTU
+
+Dobrı den,
+v rámci webového rozhraní Parkování on-line v Piešanech bylo poádáno o vytvoøení
+uivatelského úètu #EMAIL#
+Pro aktivaci úètu kliknìte na uvedené tlaèítko
+
+AKTIVACE ÚÈTU
+
+---------------------------
+
+
+RESETOVÁNÍ HESLA
+
+Dobrı den,
+v rámci webového rozhraní Parkování on-line v Piešanech bylo poádáno o resetování hesla pro pøihlášení do uivatelského úètu #EMAIL#
+Pro resetování hesla kliknìte na uvedené tlaèítko.
+
+RESET HESLA
+
+----------------------------

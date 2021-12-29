@@ -16,6 +16,7 @@ const app = (0, express_1.default)();
 app.use((0, cors_1.default)());
 app.use((0, helmet_1.default)());
 app.use(body_parser_1.default.json());
+app.use(body_parser_1.default.urlencoded({ extended: true }));
 const httpServer = (0, http_1.createServer)(app);
 const PORT = 4001;
 const io = new socket_io_1.Server(httpServer, {
